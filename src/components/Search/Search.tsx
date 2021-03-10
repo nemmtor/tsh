@@ -32,11 +32,13 @@ export const Search = () => {
   return (
     <label htmlFor="search" className={styles.search}>
       <InputBase
-        data-testid="searchInput"
         name="search"
         placeholder="Search…"
         classes={{
           input: styles.input,
+        }}
+        inputProps={{
+          'data-testid': 'searchInput',
         }}
       />
       <div className={styles.searchIcon}>
