@@ -7,11 +7,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   search: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
     borderRadius: '8px',
-    border: '1px solid black',
+    border: '1px solid #E0E2EA',
     backgroundColor: '#FFF',
     width: '100%',
-    padding: '16px',
+    padding: theme.spacing(2),
   },
   searchIcon: {
     height: '100%',
@@ -23,6 +24,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   input: {
     width: '100%',
     padding: '0',
+    '&::placeholder': {
+      color: theme.palette.text.primary,
+      opacity: 1,
+    },
   },
 }));
 
@@ -33,7 +38,7 @@ export const Search = () => {
     <label htmlFor="search" className={styles.search}>
       <InputBase
         name="search"
-        placeholder="Search…"
+        placeholder="Search"
         classes={{
           input: styles.input,
         }}

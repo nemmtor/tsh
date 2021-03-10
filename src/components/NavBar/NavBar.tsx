@@ -14,9 +14,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
-  logoWrapper: {},
-  avatarWrapper: {},
+  logoWrapper: {
+    order: -1,
+  },
+  searchWrapper: {
+    width: '100%',
+    maxWidth: '392px',
+    marginTop: theme.spacing(3),
+  },
+  avatarWrapper: {
+    order: -1,
+  },
   avatar: {
     height: theme.typography.pxToRem(48),
     width: theme.typography.pxToRem(48),
@@ -30,7 +40,9 @@ export const NavBar = () => {
       <div className={styles.logoWrapper}>
         <Logo />
       </div>
-      <Search />
+      <div className={styles.searchWrapper}>
+        <Search />
+      </div>
       <div className={styles.avatarWrapper}>
         <Avatar data-testid="avatar" src={avatar} alt="user avatar" />
       </div>
