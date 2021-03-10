@@ -30,16 +30,18 @@ export const Search = () => {
   const styles = useStyles();
 
   return (
-    <div className={styles.search}>
+    <label htmlFor="search" className={styles.search}>
       <InputBase
+        data-testid="searchInput"
+        name="search"
         placeholder="Search…"
         classes={{
           input: styles.input,
         }}
       />
       <div className={styles.searchIcon}>
-        <img src={SearchIcon} alt="Search" />
+        <img data-testid="searchIcon" src={SearchIcon} alt="Search" />
       </div>
-    </div>
+    </label>
   );
 };
