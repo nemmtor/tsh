@@ -4,6 +4,7 @@ import React from 'react';
 import avatar from 'img/avatar.png';
 
 import { Logo } from '../Logo';
+import { Search } from '../Search';
 
 const useStyles = makeStyles((theme: Theme) => ({
   navBar: {
@@ -29,6 +30,7 @@ export const NavBar = () => {
       <div className={styles.logoWrapper}>
         <Logo />
       </div>
+      <Search />
       <div className={styles.avatarWrapper}>
         <Avatar data-testid="avatar" src={avatar} alt="user avatar" />
       </div>
