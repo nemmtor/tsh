@@ -8,6 +8,10 @@ interface Props {
   label: string;
 }
 
+interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  'data-testid': string;
+}
+
 export const CustomCheckbox = ({ name, label }: Props) => {
   return (
     <FormControlLabel
@@ -17,6 +21,11 @@ export const CustomCheckbox = ({ name, label }: Props) => {
           name={name}
           checkedIcon={<CustomCheckboxIcon isChecked />}
           icon={<CustomCheckboxIcon isChecked={false} />}
+          inputProps={
+            {
+              'data-testid': 'checkbox',
+            } as CheckboxProps
+          }
         />
       }
       label={label}
