@@ -36,4 +36,14 @@ describe('Search', () => {
       expect(getByTestId('searchInput')).toHaveFocus();
     });
   });
+
+  test('Focuses input after clicking icon', async () => {
+    const { getByTestId } = render(<Search />);
+
+    // Had to use userEvent since fireEvent doesnt trigger real UI focus
+    userEvent.click(getByTestId('searchIcon'));
+    await waitFor(() => {
+      expect(getByTestId('searchInput')).toHaveFocus();
+    });
+  });
 });
