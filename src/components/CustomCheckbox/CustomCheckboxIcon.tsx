@@ -30,7 +30,10 @@ export const CustomCheckboxIcon = ({ isChecked }: Props) => {
   const checkedClass = isChecked ? styles.checked : styles.unchecked;
 
   return (
-    <div className={`${styles.checkboxBase} ${checkedClass}`}>
+    <div
+      data-testid="checkboxIcon"
+      className={`${styles.checkboxBase} ${checkedClass}`}
+    >
       <img src={check} alt="Check"></img>
     </div>
   );

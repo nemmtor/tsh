@@ -19,4 +19,16 @@ describe('CustomCheckbox', () => {
     fireEvent.click(getByText('test'));
     expect(checkbox.checked).toBe(true);
   });
+
+  test('Changes class of icon on click', async () => {
+    const { getByText, getByTestId } = render(
+      <CustomCheckbox name="test" label="test" />,
+    );
+
+    const checkbox = getByTestId('checkboxIcon');
+
+    fireEvent.click(getByText('test'));
+
+    expect(checkbox.classList.value).toContain('checked');
+  });
 });
