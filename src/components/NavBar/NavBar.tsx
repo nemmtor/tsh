@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     order: -1,
   },
   avatar: {
-    height: theme.typography.pxToRem(48),
-    width: theme.typography.pxToRem(48),
+    height: '48px',
+    width: '48px',
   },
 }));
 

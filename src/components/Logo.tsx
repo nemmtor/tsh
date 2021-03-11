@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   logo: {
     color: theme.palette.text.primary,
     fontWeight: 600,
-    fontSize: theme.typography.pxToRem(24),
+    fontSize: '24px',
   },
 }));
 
