@@ -1,1 +1,5 @@
 @import 'fonts.css';
+
+#root {
+  background-color: #f8f8fa;
+}
