@@ -1,5 +1,5 @@
 import React from 'react';
-import { fade, InputBase, makeStyles, Theme } from '@material-ui/core';
+import { InputBase, makeStyles, Theme } from '@material-ui/core';
 
 import SearchIcon from 'img/search.svg';
 

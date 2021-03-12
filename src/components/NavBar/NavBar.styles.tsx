@@ -48,6 +48,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   avatarWrapper: {
     order: -1,
+    position: 'relative',
     [theme.breakpoints.up('sm')]: {
       order: 'unset',
     },
@@ -55,5 +56,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
   avatar: {
     height: '48px',
     width: '48px',
+  },
+  avatarButton: {
+    border: 'none',
+    background: 'transparent',
+    cursor: 'pointer',
+    outline: 'none',
   },
 }));

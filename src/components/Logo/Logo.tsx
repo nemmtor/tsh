@@ -1,5 +1,5 @@
-import { makeStyles, Theme, Typography } from '@material-ui/core';
 import React from 'react';
+import { makeStyles, Theme, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
   logo: {

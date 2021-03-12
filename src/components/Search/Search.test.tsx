@@ -8,11 +8,13 @@ import { Search } from './Search';
 describe('Search', () => {
   test('Displays input', async () => {
     const { getByTestId } = render(<Search />);
+
     expect(getByTestId('searchInput')).toBeInTheDocument();
   });
 
   test('Displays icon', async () => {
     const { getByTestId } = render(<Search />);
+
     expect(getByTestId('searchIcon')).toBeInTheDocument();
   });
 
@@ -24,6 +26,7 @@ describe('Search', () => {
     const searchInput = getByTestId('searchInput');
 
     fireEvent.change(searchInput, { target: { value } });
+
     expect(searchInput).toHaveValue(value);
   });
 
@@ -32,6 +35,7 @@ describe('Search', () => {
 
     // Had to use userEvent since fireEvent doesnt trigger real UI focus
     userEvent.click(getByTestId('searchInput'));
+
     await waitFor(() => {
       expect(getByTestId('searchInput')).toHaveFocus();
     });
@@ -42,6 +46,7 @@ describe('Search', () => {
 
     // Had to use userEvent since fireEvent doesnt trigger real UI focus
     userEvent.click(getByTestId('searchIcon'));
+
     await waitFor(() => {
       expect(getByTestId('searchInput')).toHaveFocus();
     });

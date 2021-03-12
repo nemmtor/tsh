@@ -1,5 +1,5 @@
-import { FormControlLabel, Checkbox } from '@material-ui/core';
 import React from 'react';
+import { FormControlLabel, Checkbox } from '@material-ui/core';
 
 import { CustomCheckboxIcon } from './CustomCheckboxIcon';
 

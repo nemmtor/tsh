@@ -1,11 +1,13 @@
 import React from 'react';
 
 import { fireEvent, render } from 'tests';
+
 import { CustomCheckbox } from './CustomCheckbox';
 
 describe('CustomCheckbox', () => {
   test('Displays label', async () => {
     const { getByText } = render(<CustomCheckbox name="test" label="test" />);
+
     expect(getByText('test')).toBeInTheDocument();
   });
 

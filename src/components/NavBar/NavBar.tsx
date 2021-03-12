@@ -1,15 +1,29 @@
+import React, { useState } from 'react';
 import { AppBar, Avatar, Container } from '@material-ui/core';
-import React from 'react';
 
 import avatar from 'img/avatar.png';
 
-import { useStyles } from './NavBar.styles';
 import { Logo } from '../Logo';
 import { Search } from '../Search';
 import { CustomCheckbox } from '../CustomCheckbox';
+import { Dropdown } from '../Dropdown';
+import { DropdownItem } from '../DropdownItem';
+
+import { useStyles } from './NavBar.styles';
 
 export const NavBar = () => {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
   const styles = useStyles();
+
+  const toggleMenu = () => {
+    setMenuIsOpen((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    console.log('logout');
+  };
+
   return (
     <div className={styles.wrapper}>
       <Container>
@@ -25,7 +39,16 @@ export const NavBar = () => {
             <CustomCheckbox name="promo" label="Promo" />
           </div>
           <div className={styles.avatarWrapper}>
-            <Avatar data-testid="avatar" src={avatar} alt="user avatar" />
+            <button
+              type="button"
+              className={styles.avatarButton}
+              onClick={toggleMenu}
+            >
+              <Avatar data-testid="avatar" src={avatar} alt="User avatar" />
+            </button>
+            <Dropdown isOpen={menuIsOpen}>
+              <DropdownItem handleClick={handleLogout}>Logout</DropdownItem>
+            </Dropdown>
           </div>
         </AppBar>
       </Container>
