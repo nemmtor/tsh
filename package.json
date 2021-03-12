@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "react-scripts build",
-    "coverage": "cross-env NODE_ICU_DATA=node_modules/full-icu react-scripts test --coverage --watchAll=false",
+    "coverage": "cross-env NODE_ICU_DATA=node_modules/full-icu react-scripts test --coverage --watchAll=false --env=jsdom-fourteen",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
     "test": "cross-env NODE_ICU_DATA=node_modules/full-icu react-scripts test --env=jsdom-fourteen",
