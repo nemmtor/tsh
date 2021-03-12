@@ -48,4 +48,16 @@ describe('NavBar', () => {
 
     expect(queryByText('Logout')).toBeInTheDocument();
   });
+
+  test('Hides user menu after clicking outside', async () => {
+    const { queryByText, getByTestId } = render(<NavBar />);
+
+    // open menu
+    fireEvent.click(getByTestId('avatar'));
+
+    // click outside
+    fireEvent.click(getByTestId('logo'));
+
+    expect(queryByText('Logout')).not.toBeInTheDocument();
+  });
 });
