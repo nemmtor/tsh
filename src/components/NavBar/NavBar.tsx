@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { AppBar, Avatar, Container } from '@material-ui/core';
 
 import avatar from 'img/avatar.png';
+import { useOutsideClick } from 'hooks/useOutsideClick';
 
 import { Logo } from '../Logo';
 import { Search } from '../Search';
@@ -14,6 +15,8 @@ import { useStyles } from './NavBar.styles';
 export const NavBar = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
+  const userRef = useRef(null);
+
   const styles = useStyles();
 
   const toggleMenu = () => {
@@ -23,6 +26,10 @@ export const NavBar = () => {
   const handleLogout = () => {
     console.log('logout');
   };
+
+  useOutsideClick(userRef, () => {
+    setMenuIsOpen(false);
+  });
 
   return (
     <div className={styles.wrapper}>
@@ -38,7 +45,7 @@ export const NavBar = () => {
             <CustomCheckbox name="active" label="Active" />
             <CustomCheckbox name="promo" label="Promo" />
           </div>
-          <div className={styles.avatarWrapper}>
+          <div ref={userRef} className={styles.userWrapper}>
             <button
               type="button"
               className={styles.avatarButton}

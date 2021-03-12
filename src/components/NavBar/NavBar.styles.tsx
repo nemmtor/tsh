@@ -46,7 +46,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       margin: '0 24px 0 0',
     },
   },
-  avatarWrapper: {
+  userWrapper: {
     order: -1,
     position: 'relative',
     [theme.breakpoints.up('sm')]: {

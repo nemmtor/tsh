@@ -12,6 +12,10 @@ const useStyles = makeStyles({
     fontSize: '14px',
     fontWeight: 600,
     cursor: 'pointer',
+    transition: 'filter 0.3s ease',
+    '&:hover': {
+      filter: 'brightness(0.9)',
+    },
   },
 });
 
