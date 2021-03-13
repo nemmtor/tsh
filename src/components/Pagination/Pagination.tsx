@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useStyles } from './Pagination.styles';
-import { getPages } from './getPages';
+import { getPages } from '../../helpers';
 
 interface Props {
   currentPage: number;

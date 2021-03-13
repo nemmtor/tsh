@@ -18,7 +18,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       padding: '0 0 48px 0',
     },
     [theme.breakpoints.up('md')]: {
-      paddingTop: '48px',
+      padding: '52px 0',
     },
   },
   inputsWrapper: {

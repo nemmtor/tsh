@@ -17,6 +17,7 @@ export interface ItemProps {
   active: boolean;
 }
 
+// TODO: Add tests
 export const ItemCard = ({
   active,
   description,

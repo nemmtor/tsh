@@ -1,55 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { Container, makeStyles, Theme } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 
 import { NavBar } from 'components/NavBar';
-import { ItemCard, ItemProps } from 'components/ItemCard/ItemCard';
+import { ItemCard } from 'components/ItemCard';
 import { Pagination } from 'components/Pagination';
 import { NoItemsFound } from 'components/NoItemsFound';
 
+import { useStyles } from './Products.styles';
+import { ResponseData } from './ResponseData';
 import { fetchProducts } from './fetchProducts';
-
-interface Meta {
-  itemCount: number;
-  totalItems: number;
-  itemsPerPage: number;
-  totalPages: number;
-  currentPage: number;
-}
-
-interface Links {
-  first: string;
-  previous: string;
-  next: string;
-  last: string;
-}
-interface Data {
-  items: ItemProps[];
-  meta: Meta;
-  links: Links;
-}
 
 // Fetch 4 items for smaller devices and 8 for larger
 const limit = window.screen.width >= 960 ? 8 : 4;
-
-const useStyles = makeStyles((theme: Theme) => ({
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  itemsWrapper: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    [theme.breakpoints.up('sm')]: { flexWrap: 'wrap' },
-  },
-  paginationWrapper: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-}));
-
 export const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState<number | null>(null);
@@ -60,7 +23,7 @@ export const Products = () => {
 
   const styles = useStyles();
 
-  const { data, isLoading, isError, error } = useQuery<Data, Error>(
+  const { data, isLoading, isError, error } = useQuery<ResponseData, Error>(
     ['products', { page: currentPage, limit, search, promo, active }],
     fetchProducts,
     {

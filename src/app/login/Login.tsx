@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { AppRoute } from 'routing/AppRoute.enum';
 
+// TODO: Rewrite this
 export const Login = () => {
   return (
     <>

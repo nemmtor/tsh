@@ -63,4 +63,6 @@ describe('Search', () => {
       expect(getByTestId('searchInput')).toHaveFocus();
     });
   });
+
+  // TODO: Add test which checks if searchAction is called on input
 });

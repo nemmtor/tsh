@@ -1,16 +1,6 @@
 import React, { ReactNode } from 'react';
-import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles({
-  menu: {
-    position: 'absolute',
-    minWidth: '184px',
-    display: 'flex',
-    flexDirection: 'column',
-    top: 'calc(100% + 10px)',
-    right: 0,
-  },
-});
+import { useStyles } from './Dropdown.styles';
 
 interface Props {
   children: ReactNode;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormControlLabel, Checkbox } from '@material-ui/core';
 
-import { CustomCheckboxIcon } from './CustomCheckboxIcon';
+import { CustomCheckboxIcon } from '../CustomCheckboxIcon/CustomCheckboxIcon';
 
 interface Props {
   name: string;

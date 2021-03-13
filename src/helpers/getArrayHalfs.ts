@@ -1,3 +1,4 @@
+// TODO: Add tests
 export const getArrayHalfs = <T>(arr: T[]) => {
   const half = Math.ceil(arr.length / 2);
   const firstHalf = arr.slice(0, half);
