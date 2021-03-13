@@ -15,7 +15,6 @@ interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const CustomCheckbox = ({ name, label, changeAction }: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('change');
     changeAction(e.target.checked);
   };
 
