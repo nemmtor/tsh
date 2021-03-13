@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { AppBar, Avatar, Container } from '@material-ui/core';
 
 import avatar from 'img/avatar.png';
-import { useOutsideClick } from 'hooks/useOutsideClick';
+import { useOutsideClick } from 'hooks';
 
 import { Logo } from '../Logo';
 import { Search } from '../Search';
