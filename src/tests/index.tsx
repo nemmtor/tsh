@@ -3,13 +3,26 @@ import React, { ReactNode } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { Queries } from '@testing-library/dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const Wrapper = ({ children }: { children?: ReactNode }) => {
-  return <Router>{children}</Router>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router>{children}</Router>;
+    </QueryClientProvider>
+  );
 };
 
-function customRender(ui: React.ReactElement, options?: Omit<RenderOptions, 'queries'>): RenderResult;
-function customRender<Q extends Queries>(ui: React.ReactElement, options: RenderOptions<Q>): RenderResult<Q>;
+function customRender(
+  ui: React.ReactElement,
+  options?: Omit<RenderOptions, 'queries'>,
+): RenderResult;
+function customRender<Q extends Queries>(
+  ui: React.ReactElement,
+  options: RenderOptions<Q>,
+): RenderResult<Q>;
 function customRender<Q extends Queries>(
   ui: React.ReactElement,
   options?: RenderOptions<Q> | Omit<RenderOptions, 'queries'>,

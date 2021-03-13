@@ -5,21 +5,33 @@ import { fireEvent, render, waitFor } from 'tests';
 
 import { Search } from './Search';
 
+jest.mock('lodash', () => {
+  return {
+    debounce: jest.fn((fn) => fn),
+  };
+});
+
+const searchActionMock = jest.fn();
+
+beforeEach(() => {
+  searchActionMock.mockClear();
+});
+
 describe('Search', () => {
   test('Displays input', async () => {
-    const { getByTestId } = render(<Search />);
+    const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
     expect(getByTestId('searchInput')).toBeInTheDocument();
   });
 
   test('Displays icon', async () => {
-    const { getByTestId } = render(<Search />);
+    const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
     expect(getByTestId('searchIcon')).toBeInTheDocument();
   });
 
   test('Shows correct value after change event', async () => {
-    const { getByTestId } = render(<Search />);
+    const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
     const value = 'asdf!@#L!P_dsa';
 
@@ -31,7 +43,7 @@ describe('Search', () => {
   });
 
   test('Focuses input after clicking it', async () => {
-    const { getByTestId } = render(<Search />);
+    const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
     // Had to use userEvent since fireEvent doesnt trigger real UI focus
     userEvent.click(getByTestId('searchInput'));
@@ -42,7 +54,7 @@ describe('Search', () => {
   });
 
   test('Focuses input after clicking icon', async () => {
-    const { getByTestId } = render(<Search />);
+    const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
     // Had to use userEvent since fireEvent doesnt trigger real UI focus
     userEvent.click(getByTestId('searchIcon'));
