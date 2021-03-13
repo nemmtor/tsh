@@ -1,5 +1,5 @@
 interface Star {
-  id: number;
+  id: string;
   isFilled: boolean;
 }
 
@@ -10,7 +10,8 @@ export const getRatingStars = (rating: number): Star[] => {
   // Return all stars filled
   if (rating > MAX_RATING) {
     return [...Array(MAX_RATING)].map((_, i) => ({
-      id: i,
+      // Probably not the best practice to use Math.random() here
+      id: i + String(Math.random()),
       isFilled: true,
     }));
   }
@@ -18,18 +19,18 @@ export const getRatingStars = (rating: number): Star[] => {
   // Return all stars unfilled
   if (rating < MIN_RATING) {
     return [...Array(MAX_RATING)].map((_, i) => ({
-      id: i,
+      id: i + String(Math.random()),
       isFilled: false,
     }));
   }
 
   const starsFilled: Star[] = [...Array(rating)].map((_, i) => ({
-    id: i,
+    id: i + String(Math.random()),
     isFilled: true,
   }));
 
   const starsUnfilled: Star[] = [...Array(MAX_RATING - rating)].map((_, i) => ({
-    id: i,
+    id: i + String(Math.random()),
     isFilled: false,
   }));
 

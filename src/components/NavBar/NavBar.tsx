@@ -12,7 +12,13 @@ import { DropdownItem } from '../DropdownItem';
 
 import { useStyles } from './NavBar.styles';
 
-export const NavBar = () => {
+interface Props {
+  searchAction: (value: string) => void;
+  setPromo: (value: boolean) => void;
+  setActive: (value: boolean) => void;
+}
+
+export const NavBar = ({ searchAction, setPromo, setActive }: Props) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const userRef = useRef(null);
@@ -40,10 +46,18 @@ export const NavBar = () => {
           </div>
           <div className={styles.inputsWrapper}>
             <div className={styles.searchWrapper}>
-              <Search />
+              <Search searchAction={searchAction} />
             </div>
-            <CustomCheckbox name="active" label="Active" />
-            <CustomCheckbox name="promo" label="Promo" />
+            <CustomCheckbox
+              changeAction={setActive}
+              name="active"
+              label="Active"
+            />
+            <CustomCheckbox
+              changeAction={setPromo}
+              name="promo"
+              label="Promo"
+            />
           </div>
           <div ref={userRef} className={styles.userWrapper}>
             <button

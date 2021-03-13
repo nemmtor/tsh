@@ -1,5 +1,4 @@
-import React from 'react';
-import { createMuiTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core';
 
 export const theme = createMuiTheme({
   typography: {

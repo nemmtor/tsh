@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { InputBase, makeStyles, Theme } from '@material-ui/core';
+import { debounce } from 'lodash';
 
 import SearchIcon from 'img/search.svg';
 
@@ -34,8 +35,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const Search = () => {
+interface Props {
+  searchAction: (value: string) => void;
+}
+
+export const Search = ({ searchAction }: Props) => {
   const styles = useStyles();
+
+  const searchActionDebounced = useCallback(debounce(searchAction, 500), []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    searchActionDebounced(e.target.value);
+  };
 
   return (
     <label htmlFor="search" className={styles.search}>
@@ -43,6 +54,7 @@ export const Search = () => {
         name="search"
         id="search"
         placeholder="Search"
+        onChange={handleChange}
         classes={{
           root: styles.root,
           input: styles.input,
