@@ -1,9 +1,19 @@
 @import 'fonts.css';
 
-#root {
+* {
+  font-family: 'Nunito', sans-serif;
+}
+
+body {
   background-color: #f8f8fa;
 }
 
-* {
-  font-family: 'Nunito', sans-serif;
+#root {
+  padding-bottom: 68px;
+}
+
+@media (min-width: 960px) {
+  #root {
+    padding-bottom: 56px;
+  }
 }

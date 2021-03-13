@@ -38,30 +38,32 @@ export const ItemCard = ({
         src={image}
         alt={name}
       />
-      <h2 className={styles.title}>{name}</h2>
-      <p className={styles.description}>{description}</p>
-      <ul className={styles.stars}>
-        {stars.map(({ id, isFilled }) => (
-          <li className={styles.star} key={id}>
-            <img
-              className={styles.starImage}
-              src={isFilled ? starFilled : starUnfilled}
-              alt=""
-            />
-          </li>
-        ))}
-      </ul>
-      <Button
-        classes={{
-          root: styles.button,
-          label: styles.buttonLabel,
-        }}
-        variant="contained"
-        color="primary"
-        disabled={!active}
-      >
-        {active ? 'Show details' : 'Unavailable'}
-      </Button>
+      <div className={styles.content}>
+        <h2 className={styles.title}>{name}</h2>
+        <p className={styles.description}>{description}</p>
+        <ul className={styles.stars}>
+          {stars.map(({ id, isFilled }) => (
+            <li className={styles.star} key={id}>
+              <img
+                className={styles.starImage}
+                src={isFilled ? starFilled : starUnfilled}
+                alt=""
+              />
+            </li>
+          ))}
+        </ul>
+        <Button
+          classes={{
+            root: styles.button,
+            label: styles.buttonLabel,
+          }}
+          variant="contained"
+          color="primary"
+          disabled={!active}
+        >
+          {active ? 'Show details' : 'Unavailable'}
+        </Button>
+      </div>
     </div>
   );
 };

@@ -7,6 +7,23 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'column',
     width: '327px',
     height: '400px',
+    maxWidth: '100%',
+    marginTop: theme.spacing(3),
+    '&:last-of-type': {
+      marginBottom: theme.spacing(5),
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginRight: theme.spacing(3),
+      marginBottom: theme.spacing(4),
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '288px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      '&:nth-child(4n)': {
+        marginRight: 0,
+      },
+    },
   },
   promo: {
     position: 'absolute',
@@ -19,6 +36,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '14px',
     fontWeight: 600,
     color: '#FFF',
+    zIndex: 100,
   },
   image: {
     borderRadius: '8px 8px 0 0',
@@ -27,8 +45,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
     filter: 'grayscale(100%)',
     opacity: 0.5,
   },
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    background: '#FFF',
+    padding: '16px 16px 24px 16px',
+    borderRadius: '0 0 8px 8px',
+    height: '230px',
+  },
   title: {
-    margin: '16px 0 8px 0',
+    margin: '0 0 8px 0',
     color: theme.palette.text.primary,
     fontSize: '18px',
     fontWeight: 600,
@@ -58,6 +84,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   button: {
     padding: '11px 16px',
+    marginTop: 'auto',
     '&.Mui-disabled': {
       backgroundColor: '#9194A5',
       color: '#FFF',

@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 export const AppProviders = ({ children }: AppProvidersProps) => (
   <ThemeProvider theme={theme}>
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
       <CssBaseline />
       <Router>{children}</Router>
     </QueryClientProvider>
