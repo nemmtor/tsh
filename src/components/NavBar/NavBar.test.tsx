@@ -1,6 +1,7 @@
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-import { fireEvent, render } from 'tests';
+import { render } from 'tests';
 
 import { NavBar } from './NavBar';
 
@@ -102,7 +103,7 @@ describe('NavBar', () => {
       />,
     );
 
-    fireEvent.click(getByTestId('avatar'));
+    userEvent.click(getByTestId('avatar'));
 
     expect(queryByText('Logout')).toBeInTheDocument();
   });
@@ -117,10 +118,10 @@ describe('NavBar', () => {
     );
 
     // open menu
-    fireEvent.click(getByTestId('avatar'));
+    userEvent.click(getByTestId('avatar'));
 
     // click outside
-    fireEvent.click(getByTestId('logo'));
+    userEvent.click(getByTestId('logo'));
 
     expect(queryByText('Logout')).not.toBeInTheDocument();
   });

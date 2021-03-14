@@ -1,6 +1,7 @@
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-import { fireEvent, render } from 'tests';
+import { render } from 'tests';
 
 import { CustomCheckbox } from './CustomCheckbox';
 
@@ -34,7 +35,7 @@ describe('CustomCheckbox', () => {
 
     const checkbox = getByTestId('checkbox') as HTMLInputElement;
 
-    fireEvent.click(getByText('test'));
+    userEvent.click(getByText('test'));
     expect(checkbox.checked).toBe(true);
   });
 
@@ -49,7 +50,7 @@ describe('CustomCheckbox', () => {
 
     const checkbox = getByTestId('checkboxIcon');
 
-    fireEvent.click(getByText('test'));
+    userEvent.click(getByText('test'));
 
     expect(checkbox.classList.value).toContain('checked');
   });
@@ -63,7 +64,7 @@ describe('CustomCheckbox', () => {
       />,
     );
 
-    fireEvent.click(getByText('test'));
+    userEvent.click(getByText('test'));
 
     expect(changeActionMock).toBeCalled();
   });

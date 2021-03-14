@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 
-import { fireEvent, render, waitFor } from 'tests';
+import { render, waitFor } from 'tests';
 
 import { Search } from './Search';
 
@@ -30,14 +30,14 @@ describe('Search', () => {
     expect(getByTestId('searchIcon')).toBeInTheDocument();
   });
 
-  test('Shows correct value after change event', async () => {
+  test('Shows correct value typing', async () => {
     const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
     const value = 'asdf!@#L!P_dsa';
 
     const searchInput = getByTestId('searchInput');
 
-    fireEvent.change(searchInput, { target: { value } });
+    userEvent.type(searchInput, value);
 
     expect(searchInput).toHaveValue(value);
   });
@@ -45,7 +45,6 @@ describe('Search', () => {
   test('Focuses input after clicking it', async () => {
     const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
-    // Had to use userEvent since fireEvent doesnt trigger real UI focus
     userEvent.click(getByTestId('searchInput'));
 
     await waitFor(() => {
@@ -56,7 +55,6 @@ describe('Search', () => {
   test('Focuses input after clicking icon', async () => {
     const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
-    // Had to use userEvent since fireEvent doesnt trigger real UI focus
     userEvent.click(getByTestId('searchIcon'));
 
     await waitFor(() => {
