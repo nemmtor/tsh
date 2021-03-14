@@ -51,7 +51,7 @@ export const Login = () => {
 
   return (
     <div className={styles.wrapper}>
-      <img className={styles.hero} src={loginHeroImage} />
+      <img className={styles.hero} src={loginHeroImage} alt="" />
       <Container className={`page ${styles.container}`}>
         <div className={styles.loginWrapper}>
           <Logo />
