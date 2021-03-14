@@ -3,10 +3,7 @@ import React from 'react';
 import check from 'img/check.svg';
 
 import { useStyles } from './CustomCheckboxIcon.styles';
-
-interface Props {
-  isChecked: boolean;
-}
+import { Props } from './CustomCheckbox.types';
 
 export const CustomCheckboxIcon = ({ isChecked }: Props) => {
   const styles = useStyles();

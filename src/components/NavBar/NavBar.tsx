@@ -11,12 +11,7 @@ import { Dropdown } from '../Dropdown';
 import { DropdownItem } from '../DropdownItem';
 
 import { useStyles } from './NavBar.styles';
-
-interface Props {
-  searchAction: (value: string) => void;
-  setPromo: (value: boolean) => void;
-  setActive: (value: boolean) => void;
-}
+import { Props } from './NavBar.types';
 
 export const NavBar = ({ searchAction, setPromo, setActive }: Props) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);

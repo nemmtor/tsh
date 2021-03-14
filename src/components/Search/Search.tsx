@@ -5,10 +5,7 @@ import { debounce } from 'lodash';
 import SearchIcon from 'img/search.svg';
 
 import { useStyles } from './Search.styles';
-
-interface Props {
-  searchAction: (value: string) => void;
-}
+import { Props } from './Search.types';
 
 export const Search = ({ searchAction }: Props) => {
   const styles = useStyles();

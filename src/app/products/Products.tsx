@@ -8,8 +8,7 @@ import { Pagination } from 'components/Pagination';
 import { NoItemsFound } from 'components/NoItemsFound';
 
 import { useStyles } from './Products.styles';
-import { ResponseData } from './ResponseData';
-import { fetchProducts } from './fetchProducts';
+import { getProducts, ProductsData } from '../../requests/getProducts';
 import { FullScreenItem, FullScreenItemProps } from 'components/FullScreenItem';
 
 // Fetch 4 items for smaller devices and 8 for larger
@@ -28,9 +27,9 @@ export const Products = () => {
 
   const styles = useStyles();
 
-  const { data, isLoading, isError, error } = useQuery<ResponseData, Error>(
+  const { data, isLoading, isError, error } = useQuery<ProductsData, Error>(
     ['products', { page: currentPage, limit, search, promo, active }],
-    fetchProducts,
+    getProducts,
     {
       keepPreviousData: true,
       // cache response for 5 minutes

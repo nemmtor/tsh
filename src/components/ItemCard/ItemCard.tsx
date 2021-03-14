@@ -6,17 +6,7 @@ import starFilled from 'img/star-filled.svg';
 import starUnfilled from 'img/star-outline.svg';
 
 import { useStyles } from './ItemCard.styles';
-
-export interface ItemProps {
-  id: number;
-  name: string;
-  description: string;
-  rating: number;
-  image: string;
-  promo: boolean;
-  active: boolean;
-  handleClick: () => void;
-}
+import { ItemProps } from './ItemCard.types';
 
 export const ItemCard = ({
   active,

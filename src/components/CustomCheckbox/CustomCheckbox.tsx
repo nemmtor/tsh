@@ -2,16 +2,7 @@ import React from 'react';
 import { FormControlLabel, Checkbox } from '@material-ui/core';
 
 import { CustomCheckboxIcon } from '../CustomCheckboxIcon/CustomCheckboxIcon';
-
-interface Props {
-  name: string;
-  label: string;
-  changeAction: (value: boolean) => void;
-}
-
-interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  'data-testid': string;
-}
+import { CheckboxProps, Props } from './CustomCheckbox.types';
 
 export const CustomCheckbox = ({ name, label, changeAction }: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +13,7 @@ export const CustomCheckbox = ({ name, label, changeAction }: Props) => {
     <FormControlLabel
       control={
         <Checkbox
+          // TODO: move it to styles file
           style={{ padding: '0px 8px 0px 10px' }}
           name={name}
           onChange={handleChange}

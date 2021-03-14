@@ -1,3 +1,5 @@
+import { ProductsData } from './ProductsData';
+
 interface QueryVariables {
   search?: string;
   limit: number;
@@ -31,7 +33,9 @@ const getParams = ({ search, limit, page, promo, active }: QueryVariables) => {
   return params;
 };
 
-export const fetchProducts = async ({ queryKey }: Props) => {
+export const getProducts = async ({
+  queryKey,
+}: Props): Promise<ProductsData> => {
   const [, queryVariables] = queryKey;
 
   const url =

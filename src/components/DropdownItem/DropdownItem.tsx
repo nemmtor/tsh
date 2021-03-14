@@ -1,11 +1,7 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import { useStyles } from './DropdownItem.styles';
-
-interface Props {
-  handleClick: () => void;
-  children: ReactNode;
-}
+import { Props } from './DropdownItem.types';
 
 export const DropdownItem = ({ handleClick, children }: Props) => {
   const styles = useStyles();

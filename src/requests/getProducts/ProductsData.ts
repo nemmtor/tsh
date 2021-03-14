@@ -15,7 +15,7 @@ interface Links {
   last: string;
 }
 
-export interface ResponseData {
+export interface ProductsData {
   items: ItemProps[];
   meta: Meta;
   links: Links;

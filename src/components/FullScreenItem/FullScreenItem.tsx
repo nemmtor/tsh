@@ -5,13 +5,7 @@ import closeIcon from 'img/close.svg';
 
 import { useStyles } from './FullScreenItem.styles';
 import { useOutsideClick } from 'hooks';
-
-export interface FullScreenItemProps {
-  imgSrc: string;
-  title: string;
-  description: string;
-  handleClose: () => void;
-}
+import { FullScreenItemProps } from './FullScreenItem.types';
 
 export const FullScreenItem = ({
   imgSrc,

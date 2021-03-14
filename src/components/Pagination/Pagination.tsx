@@ -2,12 +2,7 @@ import React from 'react';
 
 import { useStyles } from './Pagination.styles';
 import { getPages } from '../../helpers';
-
-interface Props {
-  currentPage: number;
-  totalPages: number;
-  setCurrentPage: (page: number) => void;
-}
+import { Props } from './Pagination.types';
 
 const pagesOnEachSide = 3;
 
