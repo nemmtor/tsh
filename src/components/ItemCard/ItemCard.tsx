@@ -17,7 +17,6 @@ export interface ItemProps {
   active: boolean;
 }
 
-// TODO: Add tests
 export const ItemCard = ({
   active,
   description,
@@ -34,6 +33,7 @@ export const ItemCard = ({
     <div className={styles.card}>
       {promo && <div className={styles.promo}>Promo</div>}
       <img
+        data-testid="image"
         className={`${styles.image} ${active ? '' : styles.imageDisabled}`}
         height="170"
         src={image}
@@ -48,12 +48,13 @@ export const ItemCard = ({
               <img
                 className={styles.starImage}
                 src={isFilled ? starFilled : starUnfilled}
-                alt=""
+                alt={isFilled ? `Filled star` : `Unfilled star`}
               />
             </li>
           ))}
         </ul>
         <Button
+          data-testid="button"
           classes={{
             root: styles.button,
             label: styles.buttonLabel,

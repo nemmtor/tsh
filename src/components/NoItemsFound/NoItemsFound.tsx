@@ -4,7 +4,6 @@ import emptyDocument from 'img/empty-document.svg';
 
 import { useStyles } from './NoItemsFound.styles';
 
-// TODO: Add tests
 export const NoItemsFound = () => {
   const styles = useStyles();
 

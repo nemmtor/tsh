@@ -85,6 +85,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   button: {
     padding: '11px 16px',
     marginTop: 'auto',
+    textTransform: 'none',
     '&.Mui-disabled': {
       backgroundColor: '#9194A5',
       color: '#FFF',

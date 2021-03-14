@@ -64,5 +64,9 @@ describe('Search', () => {
     });
   });
 
-  // TODO: Add test which checks if searchAction is called on input
+  test('Calls searchAction on input', async () => {
+    const { getByTestId } = render(<Search searchAction={searchActionMock} />);
+    userEvent.type(getByTestId('searchInput'), 'abcd');
+    expect(searchActionMock).toBeCalled();
+  });
 });
