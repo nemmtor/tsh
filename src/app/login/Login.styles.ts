@@ -25,10 +25,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: '496px',
   },
   form: {
-    position: 'absolute',
-    top: '50%',
-    width: '100%',
-    transform: 'translateY(30%)',
+    [theme.breakpoints.up('md')]: {
+      position: 'absolute',
+      top: '50%',
+      width: '100%',
+      transform: 'translateY(30%)',
+    },
   },
   title: {
     marginTop: '103px',
