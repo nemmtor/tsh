@@ -12,7 +12,9 @@ export interface LoginResponse {
 }
 
 export const login = async (values: LoginValues): Promise<LoginResponse> => {
-  const res = await fetch(process.env.REACT_APP_API_URL + '/users/login', {
+  const url = `${process.env.REACT_APP_API_URL}/users/login`;
+
+  const res = await fetch(url, {
     method: 'POST',
     headers: {
       Accept: 'application/json',

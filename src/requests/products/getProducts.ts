@@ -32,8 +32,9 @@ export const getProducts = async ({
 }: Props): Promise<ProductsData> => {
   const [, queryVariables] = queryKey;
 
-  const url =
-    process.env.REACT_APP_API_URL + '/products?' + getParams(queryVariables);
+  const url = `${process.env.REACT_APP_API_URL}/products?${getParams(
+    queryVariables,
+  )}`;
 
   const response = await fetch(url);
 
