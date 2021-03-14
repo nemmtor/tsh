@@ -4,20 +4,16 @@
   font-family: 'Nunito', sans-serif;
 }
 
-body {
-  background-color: #f8f8fa;
-}
-
 .noscroll {
   overflow: hidden;
 }
 
-#root {
+.page {
   padding-bottom: 68px;
 }
 
 @media (min-width: 960px) {
-  #root {
+  .page {
     padding-bottom: 56px;
   }
 }

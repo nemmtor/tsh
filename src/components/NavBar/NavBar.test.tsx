@@ -35,6 +35,7 @@ describe('NavBar', () => {
         searchAction={searchActionMock}
         setPromo={setPromoMock}
         setActive={setActiveMock}
+        userIsLoading={false}
       />,
     );
 
@@ -56,6 +57,7 @@ describe('NavBar', () => {
         setPromo={setPromoMock}
         setActive={setActiveMock}
         user={userMock}
+        userIsLoading={false}
       />,
     );
 
@@ -68,6 +70,7 @@ describe('NavBar', () => {
         searchAction={searchActionMock}
         setPromo={setPromoMock}
         setActive={setActiveMock}
+        userIsLoading={false}
       />,
     );
 
@@ -81,6 +84,7 @@ describe('NavBar', () => {
         setPromo={setPromoMock}
         setActive={setActiveMock}
         user={userMock}
+        userIsLoading={false}
       />,
     );
 
@@ -96,6 +100,7 @@ describe('NavBar', () => {
         setPromo={setPromoMock}
         setActive={setActiveMock}
         user={userMock}
+        userIsLoading={false}
       />,
     );
 

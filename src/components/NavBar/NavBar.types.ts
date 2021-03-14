@@ -5,4 +5,5 @@ export interface Props {
   setPromo: (value: boolean) => void;
   setActive: (value: boolean) => void;
   user?: UserData | null;
+  userIsLoading: boolean;
 }

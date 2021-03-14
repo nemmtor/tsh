@@ -6,18 +6,15 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { AppProvidersProps } from './AppProviders.types';
 import { ThemeProvider } from './ThemeProvider';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { UserProvider } from './UserProvider';
 
 const queryClient = new QueryClient();
 
 export const AppProviders = ({ children }: AppProvidersProps) => (
   <QueryClientProvider client={queryClient}>
-    <ReactQueryDevtools />
-    <UserProvider>
-      <ThemeProvider>
-        <CssBaseline />
-        <Router>{children}</Router>
-      </ThemeProvider>
-    </UserProvider>
+    <ReactQueryDevtools initialIsOpen={false} />
+    <ThemeProvider>
+      <CssBaseline />
+      <Router>{children}</Router>
+    </ThemeProvider>
   </QueryClientProvider>
 );

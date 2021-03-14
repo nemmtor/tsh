@@ -11,9 +11,17 @@ import { DropdownItem } from '../DropdownItem';
 
 import { useStyles } from './NavBar.styles';
 import { Props } from './NavBar.types';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
+import { AppRoute } from 'routing/AppRoute.enum';
+import { useQueryClient } from 'react-query';
 
-export const NavBar = ({ user, searchAction, setPromo, setActive }: Props) => {
+export const NavBar = ({
+  user,
+  userIsLoading,
+  searchAction,
+  setPromo,
+  setActive,
+}: Props) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const history = useHistory();
 
@@ -21,16 +29,19 @@ export const NavBar = ({ user, searchAction, setPromo, setActive }: Props) => {
 
   const styles = useStyles();
 
+  const queryClient = useQueryClient();
+
   const toggleMenu = () => {
     setMenuIsOpen((prev) => !prev);
   };
 
   const handleLoginRedirect = () => {
-    history.push('/login');
+    history.push(AppRoute.login);
   };
 
   const handleLogout = () => {
-    console.log('logout');
+    localStorage.removeItem('authToken');
+    queryClient.invalidateQueries('me');
   };
 
   useOutsideClick(userRef, () => {
@@ -59,7 +70,7 @@ export const NavBar = ({ user, searchAction, setPromo, setActive }: Props) => {
               label="Promo"
             />
           </div>
-          {user && (
+          {!userIsLoading && user && (
             <div ref={userRef} className={styles.userWrapper}>
               <button
                 type="button"
@@ -77,7 +88,7 @@ export const NavBar = ({ user, searchAction, setPromo, setActive }: Props) => {
               </Dropdown>
             </div>
           )}
-          {!user && (
+          {!userIsLoading && !user && (
             <button
               type="button"
               onClick={handleLoginRedirect}

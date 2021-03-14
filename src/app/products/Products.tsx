@@ -36,11 +36,17 @@ export const Products = () => {
     {
       keepPreviousData: true,
       // cache response for 5 minutes
-      staleTime: 1 * 1000 * 60 * 5,
+      staleTime: 1000 * 60 * 5,
     },
   );
 
-  const { data: userData } = useQuery<UserData | null>('me', getMe);
+  const {
+    data: userData,
+    isLoading: userIsLoading,
+  } = useQuery<UserData | null>('me', getMe, {
+    // cache for 24h (token expiration time)
+    staleTime: 1000 * 60 * 60 * 24,
+  });
 
   useEffect(() => {
     if (data?.meta.totalPages) {
@@ -62,13 +68,29 @@ export const Products = () => {
     document.body.classList.remove('noscroll');
   };
 
+  const handleSearch = (value: string) => {
+    setCurrentPage(1);
+    setSearch(value);
+  };
+
+  const handlePromo = (checked: boolean) => {
+    setCurrentPage(1);
+    setPromo(checked);
+  };
+
+  const handleActive = (checked: boolean) => {
+    setCurrentPage(1);
+    setActive(checked);
+  };
+
   return (
-    <>
+    <div className="page">
       <NavBar
         user={userData}
-        searchAction={setSearch}
-        setPromo={setPromo}
-        setActive={setActive}
+        userIsLoading={userIsLoading}
+        searchAction={handleSearch}
+        setPromo={handlePromo}
+        setActive={handleActive}
       />
       <Container>
         {isLoading && <p>Loading...</p>}
@@ -117,6 +139,6 @@ export const Products = () => {
           imgSrc={fullScreenItem.imgSrc}
         />
       )}
-    </>
+    </div>
   );
 };

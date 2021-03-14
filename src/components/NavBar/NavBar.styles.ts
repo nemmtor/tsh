@@ -67,6 +67,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     minWidth: '88px',
     borderRadius: '4px',
     border: `1px solid ${theme.palette.primary.main}`,
+    outline: 'none',
     color: theme.palette.primary.main,
     background: '#FFF',
     fontSize: '14px',
@@ -75,6 +76,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     cursor: 'pointer',
     position: 'relative',
     zIndex: 1,
+    order: -1,
+    [theme.breakpoints.up('sm')]: {
+      order: 'unset',
+    },
     '&::before': {
       position: 'absolute',
       content: '""',
