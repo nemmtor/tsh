@@ -3,7 +3,6 @@ interface Pages {
   displayDivider: boolean;
 }
 
-// TODO: Add tests
 export const getPages = (
   currentPage: number,
   totalPages: number,

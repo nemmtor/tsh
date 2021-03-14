@@ -73,4 +73,20 @@ describe('Pagination', () => {
     userEvent.click(getByText('3'));
     expect(setCurrentPageMock).toBeCalledWith(3);
   });
+
+  test('Sets current page to 1', async () => {
+    const { getByText } = render(
+      <Pagination {...paginationPropsMock} currentPage={2} />,
+    );
+    userEvent.click(getByText('First'));
+    expect(setCurrentPageMock).toBeCalledWith(1);
+  });
+
+  test('Sets current page to last one', async () => {
+    const { getByText } = render(
+      <Pagination {...paginationPropsMock} totalPages={20} />,
+    );
+    userEvent.click(getByText('Last'));
+    expect(setCurrentPageMock).toBeCalledWith(20);
+  });
 });
