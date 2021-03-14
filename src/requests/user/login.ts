@@ -23,8 +23,12 @@ export const login = async (values: LoginValues): Promise<LoginResponse> => {
     body: JSON.stringify(values),
   });
 
-  if (res.status > 400) {
+  if (res.status === 404 || res.status === 401) {
     throw new Error('Username or password incorrect.');
+  }
+
+  if (res.status !== 201) {
+    throw new Error('Something went wrong, try again later.');
   }
 
   return res.json();
