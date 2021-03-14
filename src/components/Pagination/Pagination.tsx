@@ -11,11 +11,6 @@ interface Props {
 
 const pagesOnEachSide = 3;
 
-interface PaginationItemProps {
-  page: number;
-}
-
-// TODO: Add tests
 export const Pagination = ({
   currentPage,
   totalPages,
