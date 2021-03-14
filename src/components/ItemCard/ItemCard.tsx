@@ -31,7 +31,7 @@ export const ItemCard = ({
         src={image}
         alt={name}
       />
-      <div className={styles.content}>
+      <div className={styles.content} data-testid="cardContent">
         <h2 className={styles.title}>{name}</h2>
         <p className={styles.description}>{description}</p>
         <ul className={styles.stars}>

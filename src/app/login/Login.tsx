@@ -109,6 +109,7 @@ export const Login = () => {
                 root: styles.button,
                 label: styles.buttonLabel,
               }}
+              data-testid="submitLogin"
               variant="contained"
               color="primary"
               type="submit"

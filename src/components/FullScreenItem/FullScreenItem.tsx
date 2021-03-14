@@ -21,7 +21,7 @@ export const FullScreenItem = ({
   useOutsideClick(cardRef, handleClose);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="fullscreenItem">
       <Container>
         <div ref={cardRef} className={styles.card}>
           <button

@@ -93,6 +93,7 @@ export const NavBar = ({
               type="button"
               onClick={handleLoginRedirect}
               className={styles.loginButton}
+              data-testid="loginButton"
             >
               Log in
             </button>
