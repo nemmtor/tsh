@@ -75,7 +75,6 @@ export const Products = () => {
               <>
                 <div className={styles.itemsWrapper}>
                   {data.items.map((item) => (
-                    // TODO: Add full screen handler
                     <ItemCard
                       id={item.id}
                       key={item.id}

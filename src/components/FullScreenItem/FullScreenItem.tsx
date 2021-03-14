@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Container } from '@material-ui/core';
 
 import closeIcon from 'img/close.svg';
 
 import { useStyles } from './FullScreenItem.styles';
+import { useOutsideClick } from 'hooks';
 
 export interface FullScreenItemProps {
   imgSrc: string;
@@ -12,7 +13,6 @@ export interface FullScreenItemProps {
   handleClose: () => void;
 }
 
-// TODO: use outer click = close
 export const FullScreenItem = ({
   imgSrc,
   title,
@@ -20,10 +20,15 @@ export const FullScreenItem = ({
   handleClose,
 }: FullScreenItemProps) => {
   const styles = useStyles();
+
+  const cardRef = useRef(null);
+
+  useOutsideClick(cardRef, handleClose);
+
   return (
     <div className={styles.container}>
       <Container>
-        <div className={styles.card}>
+        <div ref={cardRef} className={styles.card}>
           <button
             className={styles.closeButton}
             type="button"

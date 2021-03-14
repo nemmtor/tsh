@@ -58,9 +58,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: theme.spacing(1),
   },
   description: {
-    fontSize: '24px',
+    fontSize: '18px',
     fontWeight: 600,
-    lineHeight: '24px',
     color: '#9194A5',
+    lineHeight: '24px',
   },
 }));
