@@ -15,6 +15,7 @@ export interface ItemProps {
   image: string;
   promo: boolean;
   active: boolean;
+  handleClick: () => void;
 }
 
 export const ItemCard = ({
@@ -24,6 +25,7 @@ export const ItemCard = ({
   name,
   promo,
   rating,
+  handleClick,
 }: ItemProps) => {
   const styles = useStyles();
 
@@ -62,6 +64,7 @@ export const ItemCard = ({
           variant="contained"
           color="primary"
           disabled={!active}
+          onClick={handleClick}
         >
           {active ? 'Show details' : 'Unavailable'}
         </Button>

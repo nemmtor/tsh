@@ -3,19 +3,24 @@ import { useQuery } from 'react-query';
 import { Container } from '@material-ui/core';
 
 import { NavBar } from 'components/NavBar';
-import { ItemCard } from 'components/ItemCard';
+import { ItemCard, ItemProps } from 'components/ItemCard';
 import { Pagination } from 'components/Pagination';
 import { NoItemsFound } from 'components/NoItemsFound';
 
 import { useStyles } from './Products.styles';
 import { ResponseData } from './ResponseData';
 import { fetchProducts } from './fetchProducts';
+import { FullScreenItem, FullScreenItemProps } from 'components/FullScreenItem';
 
 // Fetch 4 items for smaller devices and 8 for larger
 const limit = window.screen.width >= 960 ? 8 : 4;
 export const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState<number | null>(null);
+  const [fullScreenItem, setFullScreenItem] = useState<Omit<
+    FullScreenItemProps,
+    'handleClose'
+  > | null>(null);
 
   const [search, setSearch] = useState<string | null>(null);
   const [promo, setPromo] = useState(false);
@@ -38,6 +43,20 @@ export const Products = () => {
       setTotalPages(data.meta.totalPages);
     }
   }, [data]);
+
+  const handleSetFullScreen = (item: ItemProps) => {
+    setFullScreenItem({
+      description: item.description,
+      imgSrc: item.image,
+      title: item.name,
+    });
+    document.body.classList.add('noscroll');
+  };
+
+  const handleFullScreenClose = () => {
+    setFullScreenItem(null);
+    document.body.classList.remove('noscroll');
+  };
 
   return (
     <>
@@ -66,6 +85,9 @@ export const Products = () => {
                       name={item.name}
                       promo={item.promo}
                       rating={item.rating}
+                      handleClick={() => {
+                        handleSetFullScreen(item);
+                      }}
                     />
                   ))}
                 </div>
@@ -83,6 +105,14 @@ export const Products = () => {
           </div>
         )}
       </Container>
+      {fullScreenItem && (
+        <FullScreenItem
+          handleClose={handleFullScreenClose}
+          description={fullScreenItem.description}
+          title={fullScreenItem.title}
+          imgSrc={fullScreenItem.imgSrc}
+        />
+      )}
     </>
   );
 };
