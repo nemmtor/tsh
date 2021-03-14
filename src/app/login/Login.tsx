@@ -113,7 +113,7 @@ export const Login = () => {
               color="primary"
               type="submit"
             >
-              Log In
+              Log in
             </Button>
             <Link to="#" className={styles.forgotPassword}>
               Forgot password?
