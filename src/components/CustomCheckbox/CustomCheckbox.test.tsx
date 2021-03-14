@@ -5,14 +5,14 @@ import { render } from 'tests';
 
 import { CustomCheckbox } from './CustomCheckbox';
 
-const changeActionMock = jest.fn();
-
-beforeEach(() => {
-  changeActionMock.mockClear();
-});
-
 describe('CustomCheckbox', () => {
-  test('Displays label', async () => {
+  const changeActionMock = jest.fn();
+
+  beforeEach(() => {
+    changeActionMock.mockClear();
+  });
+
+  test('Displays label', () => {
     const { getByText } = render(
       <CustomCheckbox
         changeAction={changeActionMock}
@@ -24,7 +24,7 @@ describe('CustomCheckbox', () => {
     expect(getByText('test')).toBeInTheDocument();
   });
 
-  test('Checks checkbox on click', async () => {
+  test('Checks checkbox on click', () => {
     const { getByText, getByTestId } = render(
       <CustomCheckbox
         changeAction={changeActionMock}
@@ -36,10 +36,11 @@ describe('CustomCheckbox', () => {
     const checkbox = getByTestId('checkbox') as HTMLInputElement;
 
     userEvent.click(getByText('test'));
+
     expect(checkbox.checked).toBe(true);
   });
 
-  test('Changes class of icon on click', async () => {
+  test('Changes class of icon on click', () => {
     const { getByText, getByTestId } = render(
       <CustomCheckbox
         changeAction={changeActionMock}
@@ -55,7 +56,7 @@ describe('CustomCheckbox', () => {
     expect(checkbox.classList.value).toContain('checked');
   });
 
-  test('Calls change action after click', async () => {
+  test('Calls change action after click', () => {
     const { getByText, getByTestId } = render(
       <CustomCheckbox
         changeAction={changeActionMock}

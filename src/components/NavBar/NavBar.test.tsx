@@ -1,29 +1,36 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+import { UserData } from 'requests/user';
 
 import { render } from 'tests';
 
 import { NavBar } from './NavBar';
 
-jest.mock('lodash', () => {
-  return {
-    debounce: jest.fn((fn) => fn),
-  };
-});
-
-const searchActionMock = jest.fn();
-const setPromoMock = jest.fn();
-const setActiveMock = jest.fn();
-
-beforeEach(() => {
-  searchActionMock.mockClear();
-  setPromoMock.mockClear();
-  setActiveMock.mockClear();
-});
-
 describe('NavBar', () => {
-  test('Displays logo', async () => {
-    const { getByTestId } = render(
+  jest.mock('lodash', () => {
+    return {
+      debounce: jest.fn((fn) => fn),
+    };
+  });
+
+  const searchActionMock = jest.fn();
+  const setPromoMock = jest.fn();
+  const setActiveMock = jest.fn();
+
+  const userMock: UserData = {
+    username: 'Bob',
+    avatar: 'bobsavatar.com',
+    id: 1,
+  };
+
+  beforeEach(() => {
+    searchActionMock.mockClear();
+    setPromoMock.mockClear();
+    setActiveMock.mockClear();
+  });
+
+  test('Displays navbar properly', () => {
+    const { getByTestId, getByPlaceholderText, getByText } = render(
       <NavBar
         searchAction={searchActionMock}
         setPromo={setPromoMock}
@@ -32,57 +39,30 @@ describe('NavBar', () => {
     );
 
     expect(getByTestId('logo')).toBeInTheDocument();
-  });
-
-  test('Displays search', async () => {
-    const { getByPlaceholderText } = render(
-      <NavBar
-        searchAction={searchActionMock}
-        setPromo={setPromoMock}
-        setActive={setActiveMock}
-      />,
-    );
 
     expect(getByPlaceholderText('Search')).toBeInTheDocument();
-  });
-
-  test('Displays active checkbox', async () => {
-    const { getByText } = render(
-      <NavBar
-        searchAction={searchActionMock}
-        setPromo={setPromoMock}
-        setActive={setActiveMock}
-      />,
-    );
 
     expect(getByText('Active')).toBeInTheDocument();
-  });
-
-  test('Displays promo checkbox', async () => {
-    const { getByText } = render(
-      <NavBar
-        searchAction={searchActionMock}
-        setPromo={setPromoMock}
-        setActive={setActiveMock}
-      />,
-    );
 
     expect(getByText('Promo')).toBeInTheDocument();
+
+    expect(getByText('Log in')).toBeInTheDocument();
   });
 
-  test('Displays user avatar', async () => {
+  test('Displays user avatar', () => {
     const { getByTestId } = render(
       <NavBar
         searchAction={searchActionMock}
         setPromo={setPromoMock}
         setActive={setActiveMock}
+        user={userMock}
       />,
     );
 
     expect(getByTestId('avatar')).toBeInTheDocument();
   });
 
-  test('Doesnt show user menu', async () => {
+  test('Doesnt show user menu at start', () => {
     const { queryByText } = render(
       <NavBar
         searchAction={searchActionMock}
@@ -94,12 +74,13 @@ describe('NavBar', () => {
     expect(queryByText('Logout')).not.toBeInTheDocument();
   });
 
-  test('Show user menu after clicking on avatar', async () => {
+  test('Show user menu after clicking on avatar', () => {
     const { queryByText, getByTestId } = render(
       <NavBar
         searchAction={searchActionMock}
         setPromo={setPromoMock}
         setActive={setActiveMock}
+        user={userMock}
       />,
     );
 
@@ -108,12 +89,13 @@ describe('NavBar', () => {
     expect(queryByText('Logout')).toBeInTheDocument();
   });
 
-  test('Hides user menu after clicking outside', async () => {
+  test('Hides user menu after clicking outside', () => {
     const { queryByText, getByTestId } = render(
       <NavBar
         searchAction={searchActionMock}
         setPromo={setPromoMock}
         setActive={setActiveMock}
+        user={userMock}
       />,
     );
 

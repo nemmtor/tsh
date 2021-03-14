@@ -5,7 +5,7 @@ import { render } from 'tests';
 import { Dropdown } from './Dropdown';
 
 describe('Dropdown', () => {
-  test('Doesnt display children if not open', async () => {
+  test('Doesnt display children if not open', () => {
     const { queryByText } = render(
       <Dropdown isOpen={false}>
         <span>test</span>
@@ -14,7 +14,8 @@ describe('Dropdown', () => {
 
     expect(queryByText('test')).not.toBeInTheDocument();
   });
-  test('Displays children if open', async () => {
+
+  test('Displays children if open', () => {
     const { queryByText } = render(
       <Dropdown isOpen={true}>
         <span>test</span>

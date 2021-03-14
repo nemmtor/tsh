@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 
-import { render, waitFor } from 'tests';
+import { render } from 'tests';
 
 import { Search } from './Search';
 
@@ -18,19 +18,19 @@ beforeEach(() => {
 });
 
 describe('Search', () => {
-  test('Displays input', async () => {
+  test('Displays input', () => {
     const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
     expect(getByTestId('searchInput')).toBeInTheDocument();
   });
 
-  test('Displays icon', async () => {
+  test('Displays icon', () => {
     const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
     expect(getByTestId('searchIcon')).toBeInTheDocument();
   });
 
-  test('Shows correct value typing', async () => {
+  test('Shows correct value typing', () => {
     const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
     const value = 'asdf!@#L!P_dsa';
@@ -42,27 +42,23 @@ describe('Search', () => {
     expect(searchInput).toHaveValue(value);
   });
 
-  test('Focuses input after clicking it', async () => {
+  test('Focuses input after clicking it', () => {
     const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
     userEvent.click(getByTestId('searchInput'));
 
-    await waitFor(() => {
-      expect(getByTestId('searchInput')).toHaveFocus();
-    });
+    expect(getByTestId('searchInput')).toHaveFocus();
   });
 
-  test('Focuses input after clicking icon', async () => {
+  test('Focuses input after clicking icon', () => {
     const { getByTestId } = render(<Search searchAction={searchActionMock} />);
 
     userEvent.click(getByTestId('searchIcon'));
 
-    await waitFor(() => {
-      expect(getByTestId('searchInput')).toHaveFocus();
-    });
+    expect(getByTestId('searchInput')).toHaveFocus();
   });
 
-  test('Calls searchAction on input', async () => {
+  test('Calls searchAction on input', () => {
     const { getByTestId } = render(<Search searchAction={searchActionMock} />);
     userEvent.type(getByTestId('searchInput'), 'abcd');
     expect(searchActionMock).toBeCalled();

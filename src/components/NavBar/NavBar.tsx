@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { AppBar, Avatar, Container } from '@material-ui/core';
 
-import avatar from 'img/avatar.png';
 import { useOutsideClick } from 'hooks';
 
 import { Logo } from '../Logo';
@@ -12,9 +11,11 @@ import { DropdownItem } from '../DropdownItem';
 
 import { useStyles } from './NavBar.styles';
 import { Props } from './NavBar.types';
+import { useHistory } from 'react-router';
 
-export const NavBar = ({ searchAction, setPromo, setActive }: Props) => {
+export const NavBar = ({ user, searchAction, setPromo, setActive }: Props) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const history = useHistory();
 
   const userRef = useRef(null);
 
@@ -22,6 +23,10 @@ export const NavBar = ({ searchAction, setPromo, setActive }: Props) => {
 
   const toggleMenu = () => {
     setMenuIsOpen((prev) => !prev);
+  };
+
+  const handleLoginRedirect = () => {
+    history.push('/login');
   };
 
   const handleLogout = () => {
@@ -54,18 +59,33 @@ export const NavBar = ({ searchAction, setPromo, setActive }: Props) => {
               label="Promo"
             />
           </div>
-          <div ref={userRef} className={styles.userWrapper}>
+          {user && (
+            <div ref={userRef} className={styles.userWrapper}>
+              <button
+                type="button"
+                className={styles.avatarButton}
+                onClick={toggleMenu}
+              >
+                <Avatar
+                  data-testid="avatar"
+                  src={user.avatar}
+                  alt="User avatar"
+                />
+              </button>
+              <Dropdown isOpen={menuIsOpen}>
+                <DropdownItem handleClick={handleLogout}>Logout</DropdownItem>
+              </Dropdown>
+            </div>
+          )}
+          {!user && (
             <button
               type="button"
-              className={styles.avatarButton}
-              onClick={toggleMenu}
+              onClick={handleLoginRedirect}
+              className={styles.loginButton}
             >
-              <Avatar data-testid="avatar" src={avatar} alt="User avatar" />
+              Log in
             </button>
-            <Dropdown isOpen={menuIsOpen}>
-              <DropdownItem handleClick={handleLogout}>Logout</DropdownItem>
-            </Dropdown>
-          </div>
+          )}
         </AppBar>
       </Container>
     </div>

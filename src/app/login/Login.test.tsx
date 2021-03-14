@@ -5,7 +5,7 @@ import { render } from 'tests';
 import { Login } from './Login';
 
 describe('Login', () => {
-  test('Displays all information', async () => {
+  test('Displays all information', () => {
     const { getByText, getByLabelText } = render(<Login />);
 
     expect(getByText('Products page')).toBeInTheDocument();

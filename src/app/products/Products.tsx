@@ -6,13 +6,16 @@ import { NavBar } from 'components/NavBar';
 import { ItemCard, ItemProps } from 'components/ItemCard';
 import { Pagination } from 'components/Pagination';
 import { NoItemsFound } from 'components/NoItemsFound';
+import { FullScreenItem, FullScreenItemProps } from 'components/FullScreenItem';
+
+import { getMe, UserData } from 'requests/user';
+import { getProducts, ProductsData } from 'requests/products';
 
 import { useStyles } from './Products.styles';
-import { getProducts, ProductsData } from '../../requests/getProducts';
-import { FullScreenItem, FullScreenItemProps } from 'components/FullScreenItem';
 
 // Fetch 4 items for smaller devices and 8 for larger
 const limit = window.screen.width >= 960 ? 8 : 4;
+
 export const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState<number | null>(null);
@@ -37,6 +40,8 @@ export const Products = () => {
     },
   );
 
+  const { data: userData } = useQuery<UserData | null>('me', getMe);
+
   useEffect(() => {
     if (data?.meta.totalPages) {
       setTotalPages(data.meta.totalPages);
@@ -60,6 +65,7 @@ export const Products = () => {
   return (
     <>
       <NavBar
+        user={userData}
         searchAction={setSearch}
         setPromo={setPromo}
         setActive={setActive}

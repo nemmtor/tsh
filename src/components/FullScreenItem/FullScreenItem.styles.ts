@@ -31,6 +31,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     right: '16px',
     width: '32px',
     height: '32px',
+    cursor: 'pointer',
     background: '#FFF',
     border: 'none',
     outline: 'none',

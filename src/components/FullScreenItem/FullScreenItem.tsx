@@ -7,6 +7,7 @@ import { useStyles } from './FullScreenItem.styles';
 import { useOutsideClick } from 'hooks';
 import { FullScreenItemProps } from './FullScreenItem.types';
 
+// TODO: Add tests
 export const FullScreenItem = ({
   imgSrc,
   title,

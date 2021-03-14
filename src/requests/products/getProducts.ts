@@ -15,18 +15,12 @@ interface Props {
 }
 
 const getParams = ({ search, limit, page, promo, active }: QueryVariables) => {
-  let params;
+  const params = new URLSearchParams({
+    limit: limit.toString(),
+    page: page.toString(),
+  });
 
-  if (search) {
-    params = new URLSearchParams({
-      search,
-      limit: '' + limit,
-      page: '' + page,
-    });
-  } else {
-    params = new URLSearchParams({ limit: '' + limit, page: '' + page });
-  }
-
+  if (search) params.set('search', search);
   if (promo) params.set('promo', 'true');
   if (active) params.set('active', 'true');
 
