@@ -4,12 +4,11 @@ import userEvent from '@testing-library/user-event';
 import { render } from 'tests';
 
 import { Search } from './Search';
+import { debounce } from '../../helpers';
 
-jest.mock('lodash', () => {
-  return {
-    debounce: jest.fn((fn) => fn),
-  };
-});
+jest.mock('../../helpers', () => ({
+  debounce: jest.fn((fn) => fn),
+}));
 
 const searchActionMock = jest.fn();
 

@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react';
 import { InputBase } from '@material-ui/core';
-import { debounce } from 'lodash';
 
 import SearchIcon from 'img/search.svg';
+
+import { debounce } from 'helpers';
 
 import { useStyles } from './Search.styles';
 import { Props } from './Search.types';

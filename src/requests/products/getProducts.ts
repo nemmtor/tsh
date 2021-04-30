@@ -32,7 +32,6 @@ export const getProducts: QueryFunction<
   ProductsData,
   ProductsQueryKey
 > = async ({ queryKey }): Promise<ProductsData> => {
-  console.log(queryKey);
   const [, queryVariables] = queryKey;
 
   const url = `${process.env.REACT_APP_API_URL}/products?${getParams(
