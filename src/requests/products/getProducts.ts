@@ -1,14 +1,15 @@
+import { QueryFunction } from 'react-query';
 import { ProductsData } from './ProductsData';
 
 interface QueryVariables {
-  search?: string;
+  search: string | null;
   limit: number;
   page: number;
   promo: boolean;
   active: boolean;
 }
 
-type ProductsQueryKey = [string, QueryVariables];
+export type ProductsQueryKey = [string, QueryVariables];
 
 interface Props {
   queryKey: ProductsQueryKey;
@@ -27,9 +28,11 @@ const getParams = ({ search, limit, page, promo, active }: QueryVariables) => {
   return params;
 };
 
-export const getProducts = async ({
-  queryKey,
-}: Props): Promise<ProductsData> => {
+export const getProducts: QueryFunction<
+  ProductsData,
+  ProductsQueryKey
+> = async ({ queryKey }): Promise<ProductsData> => {
+  console.log(queryKey);
   const [, queryVariables] = queryKey;
 
   const url = `${process.env.REACT_APP_API_URL}/products?${getParams(

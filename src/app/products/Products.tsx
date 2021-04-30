@@ -9,12 +9,11 @@ import { NoItemsFound } from 'components/NoItemsFound';
 import { FullScreenItem, FullScreenItemProps } from 'components/FullScreenItem';
 
 import { getMe, UserData } from 'requests/user';
-import { getProducts, ProductsData } from 'requests/products';
+import { getProducts, ProductsData, ProductsQueryKey } from 'requests/products';
 
 import { useStyles } from './Products.styles';
-
-// Fetch 4 items for smaller devices and 8 for larger
-const limit = window.screen.width >= 960 ? 8 : 4;
+import { bodyScroll } from 'helpers';
+import { useResizeListener } from 'hooks';
 
 export const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,10 +26,26 @@ export const Products = () => {
   const [search, setSearch] = useState<string | null>(null);
   const [promo, setPromo] = useState(false);
   const [active, setActive] = useState(false);
+  const [limit, setLimit] = useState(8);
 
   const styles = useStyles();
 
-  const { data, isLoading, isError, error } = useQuery<ProductsData, Error>(
+  const { screenWidth } = useResizeListener();
+
+  useEffect(() => {
+    if (screenWidth >= 960) {
+      setLimit(8);
+    } else {
+      setLimit(4);
+    }
+  }, [screenWidth]);
+
+  const {
+    data,
+    isLoading: isLoadingProducts,
+    isError: isProductsError,
+    error: productsError,
+  } = useQuery<ProductsData, Error, ProductsData, ProductsQueryKey>(
     ['products', { page: currentPage, limit, search, promo, active }],
     getProducts,
     {
@@ -42,7 +57,7 @@ export const Products = () => {
 
   const {
     data: userData,
-    isLoading: userIsLoading,
+    isLoading: isLoadingUser,
   } = useQuery<UserData | null>('me', getMe, {
     // cache for 24h (token expiration time)
     staleTime: 1000 * 60 * 60 * 24,
@@ -60,12 +75,12 @@ export const Products = () => {
       imgSrc: item.image,
       title: item.name,
     });
-    document.body.classList.add('noscroll');
+    bodyScroll.disable();
   };
 
   const handleFullScreenClose = () => {
     setFullScreenItem(null);
-    document.body.classList.remove('noscroll');
+    bodyScroll.enable();
   };
 
   const handleSearch = (value: string) => {
@@ -87,15 +102,17 @@ export const Products = () => {
     <div className="page">
       <NavBar
         user={userData}
-        userIsLoading={userIsLoading}
+        userIsLoading={isLoadingUser}
         searchAction={handleSearch}
         setPromo={handlePromo}
         setActive={handleActive}
       />
       <Container>
-        {isLoading && <p>Loading...</p>}
-        {!isLoading && isError && <p>{error?.message}</p>}
-        {!isLoading && !isError && data && (
+        {isLoadingProducts && <p>Loading...</p>}
+        {!isLoadingProducts && isProductsError && (
+          <p>{productsError?.message}</p>
+        )}
+        {!isLoadingProducts && !isProductsError && data && (
           <div className={styles.wrapper}>
             {data.items.length === 0 && <NoItemsFound />}
             {data.items.length > 0 && (
