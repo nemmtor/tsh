@@ -11,7 +11,10 @@ import { Props } from './Search.types';
 export const Search = ({ searchAction }: Props) => {
   const styles = useStyles();
 
-  const searchActionDebounced = useCallback(debounce(searchAction, 500), []);
+  const searchActionDebounced = useCallback(
+    debounce<typeof searchAction>(searchAction, 500),
+    [],
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     searchActionDebounced(e.target.value);
