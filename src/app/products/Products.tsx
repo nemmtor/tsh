@@ -11,9 +11,10 @@ import { FullScreenItem, FullScreenItemProps } from 'components/FullScreenItem';
 import { getMe, UserData } from 'requests/user';
 import { getProducts, ProductsData, ProductsQueryKey } from 'requests/products';
 
-import { useStyles } from './Products.styles';
-import { bodyScroll } from 'helpers';
 import { useResizeListener } from 'hooks';
+import { bodyScroll } from 'helpers';
+
+import { useStyles } from './Products.styles';
 
 export const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
